@@ -1,61 +1,89 @@
 <?php
 
-require_once('retornarota.php');
+$dados_url  = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$rota = substr($dados_url['path'],1,strlen($dados_url['path']));
 
-$rota = retornaRota();
-$rota = $rota .".php";
+//Valida rota, e se for verdaira e permitida, vai para o arquivo solicitado sem a extensão do PHP.
+rotas($rota);
 
-//Verifica se arquivo existe.
-if(file_exists($rota)){
-    $arquivoexiste = true;
-}else{
-    $arquivoexiste = false;
+//Verifica se o arquivo existe.
+arqExiste($rota);
+
+
+
+function rotas( $param) {
+
+    $rotasValidas = ['contato','empresa','enviarfaleconosco','home','index','produtos','servicos'];
+
+    if( in_array( $param, $rotasValidas)):
+        return require_once($param.".php");
+    elseif ( $param == ""):
+        return require_once('home.php');
+    else:
+        //header("Status: 404 Not Found");
+        return require_once("404.php");
+    endif;
 }
 
-//Se econtrar a página, exibe, caso contrário, redireciona para a pág 404.php personalizada.
-if($arquivoexiste){
-    header("location: $rota");
-}else{
-    header("location: 404.php");
-}
 
+function arqExiste($param){
 
-//Veriica se a rota existe.
-if (validaRota() == false){
-    $resultadoRota = "Rota não existe";
-    //echo $resultadoRota."<br>";
-}else{
-    $resultadoRota = "Rota exite";
-    //echo $resultadoRota."<br>";
+    $lRetorno = false;
+
+    //Verifica se o $param veio diferente de vazio.
+    if (trim($param) != ""){
+        $nomearq = $param .".php";
+
+        if (file_exists($nomearq)){
+            $lRetorno = true;
+        }
+    }
+
+    return $lRetorno;
 }
 
 ?>
 
 
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Site simples em PHP - Estilizado com BootStrap</title>-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <!-- Bootstrap -->-->
-<!--    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">-->
-<!--</head>-->
-<!---->
-<!--<body>-->
-<!--    --> <?php //require_once("menu.php"); ?>
-<!---->
-<!--    <div>-->
-<!--        --><?php
-//        require_once('verificapagina.php');
-//        //require_once($_GET["pagina"]);
-//        ?>
-<!--    </div>-->
-<!---->
-<!--    --><?php //require_once("rodape.php"); ?>
-<!---->
-<!--    <script src="/bootstrap/js/jquery.js"></script>-->
-<!--    <script src="/bootstrap/js/bootstrap.min.js"></script>-->
-<!--</body>-->
-<!--</html>-->
-<!---->
 
+
+<?php
+/*
+require_once('retornarota.php');
+
+$rota = retornaRota();
+if($rota != "") {
+    $rota = $rota. ".php";
+}else{
+    $rota = "home.php";
+}
+$result = file_exists($rota);
+echo  $result;die;
+
+//Verifica se arquivo existe.
+if (file_exists($rota)) {
+    $arquivoexiste = true;
+} else {
+    $arquivoexiste = false;
+}
+
+//Se econtrar a página, exibe, caso contrário, redireciona para a pág 404.php personalizada.
+if ($arquivoexiste) {
+    header("location: $rota");
+} else {
+    header("location: 404.php");
+}
+
+
+//Veriica se a rota existe.
+if (validaRota() == false) {
+    $resultadoRota = "Rota não existe";
+    //echo $resultadoRota."<br>";
+} else {
+
+    $resultadoRota = "Rota exite";
+    //echo $resultadoRota."<br>";
+}
+
+*/
+?>

@@ -1,4 +1,8 @@
-<?php require_once('verificapagina.php'); ?>
+<?php
+require_once('verificapagina.php');
+
+require_once("menu.php");
+?>
 
 <form name="contato" method="post" action="enviarfaleconosco.php">
 
@@ -32,3 +36,5 @@
     </fieldset>
 
 </form>
+
+<?php require_once("rodape.php"); ?>

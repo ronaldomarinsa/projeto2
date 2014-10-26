@@ -8,7 +8,7 @@ function retornaRota(){
 }
 
 function validaRota(){
-    $rotas = ['contato','empresa','enviarfaleconosco','home','index','produtos','servicos'];
+    $rotas = ['','contato','empresa','enviarfaleconosco','home','index','produtos','servicos'];
     $lret = false;
 
     foreach($rotas as $rota){
