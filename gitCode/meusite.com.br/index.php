@@ -1,4 +1,5 @@
 <?php
+//require_once "conexao.php";
 
 $dados_url  = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 $rota = substr($dados_url['path'],1,strlen($dados_url['path']));

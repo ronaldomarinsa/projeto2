@@ -1,7 +1,18 @@
 <?php
 require_once('verificapagina.php');
+require_once "conexao.php";
 
-require_once("menu.php");
+//Imprime o menu.
+$conexao = conecta();
+$sql = "Select * from tbl_menu";
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+$rotasValidas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+foreach($rotasValidas as $rota){
+    ?>
+    <a href=<?= $rota['href_menu'] ?>><?= $rota['nome_menu']."<br>" ?></a>
+<?php
+}
 ?>
 
 <form name="contato" method="post" action="enviarfaleconosco.php">
