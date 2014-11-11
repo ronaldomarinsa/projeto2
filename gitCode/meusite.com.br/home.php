@@ -3,11 +3,20 @@ require_once('verificapagina.php');
 require_once "conexao.php";
 ?>
 
-<form action="pesquisa.php" method="post">
-    Pesquisar: <input type="text" placeholder="Pesquisar" name="pesquisa" id="pesquisa">
-    <input type="submit" value="Pesquisar">
-</form>
 
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Site Simples do Curso Code Education</title>
+    <form action="pesquisa.php" method="post">
+        Pesquisar: <input type="text" placeholder="Pesquisar" name="pesquisa" id="pesquisa">
+        <input type="submit" value="Pesquisar">
+    </form>
+    <br>
+
+</head>
+<body>
 
 <?php
 //Imprime o menu.
@@ -17,12 +26,17 @@ $stmt = $conexao->prepare($sql);
 $stmt->execute();
 $rotasValidas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach($rotasValidas as $rota){
-?>
+    ?>
     <a href=<?= $rota['href_menu'] ?>><?= $rota['nome_menu']."<br>" ?></a>
 <?php
 }
+?>
 
 
+</body>
+
+<footer>
+<?php
 
 //Pego os dados da página corrente.
 $id = 1;
@@ -37,3 +51,5 @@ $pagina = $stmt->fetch(PDO::FETCH_ASSOC);
 <p><?php echo $pagina['hint_menu']  ?></p>
 
 <?php require_once("rodape.php"); ?>
+</footer>
+</html>

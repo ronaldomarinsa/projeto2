@@ -1,5 +1,5 @@
 <?php
-//require_once "conexao.php";
+require_once "conexao.php";
 
 $dados_url  = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 $rota = substr($dados_url['path'],1,strlen($dados_url['path']));
@@ -14,7 +14,18 @@ arqExiste($rota);
 
 function rotas( $param) {
 
-    $rotasValidas = ['contato','empresa','enviarfaleconosco','home','index','produtos','servicos'];
+    //$rotasValidas = ['contato','empresa','enviarfaleconosco','home','index','produtos','servicos'];
+    //Imprime o menu.
+    $rotasValidas = array();
+
+    $conexao = conecta();
+    $sql = "Select * from tbl_menu";
+    $stmt = $conexao->prepare($sql);
+    $stmt->execute();
+    $rotas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach($rotas as $rota){
+        $rotasValidas[] = $rota['href_menu'];
+    }
 
     if( in_array( $param, $rotasValidas)):
         return require_once($param.".php");
@@ -49,6 +60,7 @@ function arqExiste($param){
 
 
 <?php
+
 /*
 require_once('retornarota.php');
 

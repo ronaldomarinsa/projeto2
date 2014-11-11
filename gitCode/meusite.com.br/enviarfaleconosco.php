@@ -1,21 +1,32 @@
-<?
+<?php
+require_once "conexao.php";
+
 //pega as variaveis por POST
 $nome      = $_POST["nome"];
 $email     = $_POST["email"];
 $assunto   = $_POST["assunto"];
 $mensagem  = $_POST["mensagem"];
 
+//Pego os dados da página corrente.
+$conexao = conecta();
+$id = 6;
+$sql = "Select * from tbl_menu where id_menu= :id";
+$stmt = $conexao->prepare($sql);
+$stmt->bindValue("id", $id);
+$stmt->execute();
+$pagina = $stmt->fetch(PDO::FETCH_ASSOC);
+$pag_site = $pagina['hint_menu'];
+
 global $email; //função para validar a variável $email no script
 
 if($nome == ''){
     echo "<script>alert('Campo nome deve ser preenchido')</script>";
-    echo "<script>window.location.href=('index.php?pagina=contato.php')</script>";
-
+    echo "<script>window.location.href=(". $pag_site .")</script>";
 }
 
 if($email == ''){
     echo "<script>alert('Campo email deve ser preenchido')</script>";
-    echo "<script>window.location.href=('index.php?pagina=contato.php')</script>";
+    echo "<script>window.location.href=(". $pag_site .")</script>";
 }
 /*
 if(!eregi("^[a-z0-9_\.\-]+@[a-z0-9_\.\-]*[a-z0-9_\-]+\.[a-z]{2,4}$", $email)){
@@ -26,13 +37,13 @@ if(!eregi("^[a-z0-9_\.\-]+@[a-z0-9_\.\-]*[a-z0-9_\-]+\.[a-z]{2,4}$", $email)){
 
 if($assunto == ''){
     echo "<script>alert('Campo assunto deve ser preenchido')</script>";
-    echo "<script>window.location.href=('index.php?pagina=contato.php')</script>";
-
+    //echo "<script>window.location.href=('index.php?pagina=contato.php')</script>";
+    echo "<script>window.location.href=(". $pag_site .")</script>";
 }
 if($mensagem == ''){
     echo "<script>alert('Campo mensagem deve ser preenchido')</script>";
-    echo "<script>window.location.href=('index.php?pagina=contato.php')</script>";
-
+    //echo "<script>window.location.href=('index.php?pagina=contato.php')</script>";
+    echo "<script>window.location.href=(". $pag_site .")</script>";
 }else{
 
 
@@ -91,7 +102,7 @@ if($mensagem == ''){
 
     require_once("rodape.php"); ?>
 
-    <div id="link"><a href="index.php">Home</a>|<a href="javascript:history.back(1)">Voltar</a></div>
+    <div id="link"><a href="home">Home</a>|<a href="javascript:history.back(1)">Voltar</a></div>
 
 <?php
 }

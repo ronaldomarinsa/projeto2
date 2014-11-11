@@ -1,6 +1,24 @@
 <?php
 require_once "conexao.php";
+?>
 
+
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Site Simples do Curso Code Education</title>
+
+    <form action="pesquisa.php" method="post">
+        Pesquisar: <input type="text" placeholder="Pesquisar" name="pesquisa" id="pesquisa">
+        <input type="submit" value="Pesquisar">
+    </form>
+    <br>
+
+</head>
+
+<body>
+<?php
 $stringPesquisa = filter_input(INPUT_POST,'pesquisa', FILTER_SANITIZE_STRING);
 if( isset($stringPesquisa) AND $stringPesquisa <> null ) {
     $pdo = conecta();
@@ -21,3 +39,14 @@ if( isset($stringPesquisa) AND $stringPesquisa <> null ) {
 }else{
     echo '<p class="erroPesquisa">Favor informar a palavra a ser pesquisada</p>';
 }
+?>
+
+</body>
+
+<footer>
+<?php require_once("rodape.php"); ?>
+
+    <div id="link"><a href="home">Home</a>|<a href="javascript:history.back(1)">Voltar</a></div>
+</footer>
+
+</html>
