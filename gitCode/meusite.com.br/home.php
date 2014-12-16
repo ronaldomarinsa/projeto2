@@ -1,4 +1,5 @@
 <?php
+
 require_once('verificapagina.php');
 require_once "conexao.php";
 ?>
@@ -27,8 +28,8 @@ $stmt->execute();
 $rotasValidas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach($rotasValidas as $rota){
     ?>
-    <a href=<?= $rota['href_menu'] ?>><?= $rota['nome_menu']."<br>" ?></a>
-<?php
+    <a href=<?= $rota['href_menu'] ?>><?= $rota['nome_menu'] . "<br>" ?></a>
+    <?php
 }
 ?>
 
