@@ -1,4 +1,6 @@
 <?php
+ini_set("display_errors", true);
+error_reporting(E_ALL);
 
 require_once "conexao.php";
 
@@ -31,12 +33,12 @@ function rotas( $param) {
 
 
     if( in_array( $param, $rotasValidas)):
-        return require_once($param.".php");
+        return require_once($param.'.php');
     elseif ( $param == "" || substr($param,-9) == "index.php" ):
         return require_once('home.php');
     else:
         //header("Status: 404 Not Found");
-        return require_once("404.php");
+        return require_once('404.php');
     endif;
 }
 
