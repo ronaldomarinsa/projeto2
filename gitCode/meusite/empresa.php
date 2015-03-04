@@ -19,9 +19,15 @@ require_once "conexao.php";
             <label for="pesquisa" class="col-sm-1 control-label">Pesquisar:</label>
             <div class="col-sm-2">
               <input type="text" class="form-control" id="pesquisa" name="pesquisa" placeholder="Pesquisar">
-
             </div>
-            <button type="submit" name="edit_form_home" class="btn btn-success">Pesquisar</button>
+
+            <div class="col-sm-4">
+                <button type="submit" name="edit_form_home" class="btn btn-success">Pesquisar</button>
+            </div>
+
+            <div class="col-sm-4">
+                <a href="http://localhost/meusite/administracao/login.php" class="btn btn-large btn-warning">Acesso Área Administrativa</a>
+            </div>
         </div>
    </form>
 
@@ -37,9 +43,10 @@ $stmt = $conexao->prepare($sql);
 $stmt->execute();
 $rotasValidas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 foreach($rotasValidas as $rota){
-    ?>
-    <a href=<?= $rota['href_menu'] ?>><?= $rota['nome_menu']."<br>" ?></a>
-<?php
+    if ($rota['href_menu'] != 'sair'):
+        ?>
+        <a href=<?= $rota['href_menu'] ?>><?= $rota['nome_menu'] . "<br>" ?></a>
+    <?php endif;
 }
 ?>
 

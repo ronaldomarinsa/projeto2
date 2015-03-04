@@ -27,8 +27,9 @@ try{
                         (1, 'Home', 'home', 'Pagina inicial', 'N'),
                         (2, 'Empresa', 'empresa', 'Pagina empresa', 'N'),
                         (3, 'Produtos', 'produtos', 'Pagina dos produtos', 'N'),
-                        (4, 'Serviços', 'servicos', 'Pagina dos servi&ccedil;os', 'N'),
+                        (4, 'Servicos', 'servicos', 'Pagina dos servi&ccedil;os', 'N'),
                         (6, 'Contato', 'contato', 'Pagina de contato', 'N');";
+                        (7, 'Sair', 'sair', 'sair', 'N');";
     echo ( executaSql( $sqlMenuInsert ) ) ? 'Inserts na tabela tbl_menu efetuado com sucesso! '.chr(13).chr(10) : 'Erro ao tentar inserir registro no tabela tbl_menu'.chr(13).chr(10);
 
 
@@ -45,7 +46,7 @@ try{
 
 
     $sqlUsuarioInsert = "INSERT INTO `tbl_usuarios` (`id_usuario`, `nome_usuario`, `cpf_usuario`, `senha_usuario`, `dat_cadastro`, `sit_cancelado`) VALUES
-                        (1, 'Administrador', '21267811862', '".'$2y$10$eyt7.NhjDGUY69n3vitHLOlG1QE/bnejrU6gCu3XK9NHYQg7gUkRe'."', '2014-07-17 03:03:39', '1'),
+                        (1, 'admin', '21267811862', '".'$2y$10$eyt7.NhjDGUY69n3vitHLOlG1QE/bnejrU6gCu3XK9NHYQg7gUkRe'."', '2014-07-17 03:03:39', '1'),
                         (2, 'Ronaldo Marins' , '22045478246', '".'$2y$10$RXN0YSBzZW5oYSBmb2kgZuL0mVuEz/B80kfcZ0HIVGrCom53IZ3tS'."', '2014-07-20 14:33:11', '1'),
                         (3, 'Jose de la Riva Aguero' , '58803876405', '".'$2y$10$RXN0YSBzZW5oYSBmb2kgZuL0mVuEz/B80kfcZ0HIVGrCom53IZ3tS'."', '2014-07-20 14:34:40', '1'),
                         (4, 'Maria Pepa Gomes' , '50237033127', '".'$2y$10$RXN0YSBzZW5oYSBmb2kgZuL0mVuEz/B80kfcZ0HIVGrCom53IZ3tS'."', '2014-07-20 14:59:50', '1'),

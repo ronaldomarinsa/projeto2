@@ -9,6 +9,11 @@ $conexao = conecta();
 //Pego os dados da página corrente.
 $id = $_GET['id'];
 
+//Verifica se foi executado o logout.
+if($id == 7){
+    header('location: http://localhost/meusite/administracao/logout.php');
+}
+
 $sql = "Select * from tbl_menu where id_menu= :id";
 $stmt = $conexao->prepare($sql);
 $stmt->bindValue("id", $id);

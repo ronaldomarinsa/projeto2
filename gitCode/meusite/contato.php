@@ -17,9 +17,17 @@ require_once "conexao.php";
         <div class="form-group">
             <label for="pesquisa" class="col-sm-1 control-label">Pesquisar:</label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" id="pesquisa" name="pesquisa" placeholder="Pesquisar">
+                <input type="text" class="form-control" id="pesquisa" name="pesquisa" placeholder="Pesquisar">
             </div>
-            <button type="submit" name="edit_form_home" class="btn btn-success">Pesquisar</button>
+
+            <div class="col-sm-4">
+                <button type="submit" name="edit_form_home" class="btn btn-success">Pesquisar</button>
+            </div>
+
+            <div class="col-sm-4">
+                <a href="http://localhost/meusite/administracao/login.php" class="btn btn-large btn-warning">Acesso Área Administrativa</a>
+            </div>
+
         </div>
    </form>
 
